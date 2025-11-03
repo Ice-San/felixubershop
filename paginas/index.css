@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --bg-dark: hsl(120, 10%, 85%, 1);
+    --bg: hsl(100, 10, 96%, 1);
+    --bg-light: hsl(100, 15%, 92, 1);
+
+    --text: hsl(250, 6%, 20, 1);
+    --text-muted: hsl(240, 5%, 55, 1);
+
+    --highlight: hsl(140, 40%, 60, 1);
+    --border: hsl(220, 8%, 75, 1);
+    --border-muted: hsl(220, 8%, 88, 1);
+
+    --primary: hsl(145, 45%, 55, 1);
+    --secondary: hsl(90, 35%, 60, 1);
+
+    --danger: hsl(25, 75%, 55, 1);
+    --warning: hsl(50, 90%, 60, 1);
+    --success: hsl(150, 45%, 55, 1);
+    --info: hsl(220, 65%, 60, 1);
+}
+
+h1, h2, h3 {
+    color: var(--text);
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-size: 32px;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 24px;
+}
