@@ -43,9 +43,8 @@
         </div>
     </div>
 
-    <div class="hero-container">
+    <div class="hero">
         <div class="title-search-container">
-
             <div class="title-text">
                 <p>Fresh Groceries Delivered to Your Doorstep</p>
             </div>
@@ -58,94 +57,91 @@
                 <div class="search-input">
                     <input type="text" placeholder="What do you need today?" >
                 </div>
-
                 <div class="button-input">
                     <button>Search</button>
                 </div>
             </div>
-
         </div>
 
         <div class="page-center-img">
-
             <div class="center-img-size">
                 <div class="center-img"></div>
             </div>
-
         </div>
     </div>
 
 
-<div class="about-container">
-    <div class="information-container">
-                <div class="big-info-panel">
-                    <div class="big-info-panel-title">
-                        <p>About</p>
-                    </div>
-                    <div class="big-info-panel-text">
-                        <p>FelixUberShop, is your favorite grocery shop to buy your favorite products from your homeand get them in speed of light at your home!</p>
-                    </div>
+    <div class="about">
+        <div class="information-container">
+            <div class="big-info-panel">
+                <div class="big-info-panel-title">
+                    <p>About</p>
                 </div>
-                <div class="small-info-panel">
-                    <div class="small-info-panel-title">
-                        <p>Localization</p>
-                    </div>
-                    <div class="small-info-panel-text">
-                        <div class="small-info-panel-img-size">
-                            <div class="small-info-panel-img"></div>
-                        </div>
-                        <p>Rotunda da Granja, Castelo Branco, Portugal</p>
-                    </div>
-
-                </div>
-                <div class="small-info-panel">
-                    <div class="small-info-panel-title">
-                        <p>Working Hours</p>
-                    </div>
-                    <div class="small-info-panel-text">
-                        <div class="small-info-panel-img-size">
-                            <div class="small-info-panel-img2"></div>
-                        </div>
-                        <p>Dias úteis apartir das 8:00 ás 19:00</p>
-                    </div>
-
-                </div>
-                <div class="big-info-panel">
-                    <div class="big-info-panel-title">
-                        <p>About</p>
-                    </div>
-
-                    <div class="big-info-panel-down">
-                        <div class="big-info-panel-down-gmail">
-                            <div class="big-info-panel-down-gmail-img-size">
-                                <div class="big-info-panel-down-gmail-img"></div>
-                            </div>
-                            <p>felixubershop@gmail.com</p>
-                        </div>
-                             <div class="big-info-panel-down-contact">
-                                <div class="big-info-panel-down-contact-img-size">
-                                    <div class="big-info-panel-down-contact-img"></div>
-                                </div>
-                                <p>+351 925 099 845</p>
-                             </div>
+                <div class="big-info-panel-text">
+                    <p>FelixUberShop, is your favorite grocery shop to buy your favorite products from your homeand get them in speed of light at your home!</p>
                 </div>
             </div>
-    </div>
 
-    <div class="map-container">
-        <div class="map-img-size">
-            <div class="map-img"></div>
+            <div class="small-info-panel">
+                <div class="small-info-panel-title">
+                    <p>Localization</p>
+                </div>
+                <div class="small-info-panel-text">
+                     <div class="small-info-panel-img-size">
+                        <div class="small-info-panel-img"></div>
+                    </div>
+                    <p>Rotunda da Granja, Castelo Branco, Portugal</p>
+                </div>
+            </div>
+
+            <div class="small-info-panel">
+                <div class="small-info-panel-title">
+                    <p>Working Hours</p>
+                </div>
+
+                <div class="small-info-panel-text">
+                    <div class="small-info-panel-img-size">
+                        <div class="small-info-panel-img2"></div>
+                    </div>
+                    <p>Dias úteis apartir das 8:00 ás 19:00</p>
+                </div>
+            </div>
+
+            <div class="big-info-panel">
+                <div class="big-info-panel-title">
+                    <p>Contact</p>
+                </div>
+                <div class="big-info-panel-down">
+                    <div class="big-info-panel-gmail">
+                        <div class="big-info-panel-gmail-img-size">
+                            <div class="big-info-panel-gmail-img"></div>
+                        </div>
+                        <p>felixubershop@gmail.com</p>
+                    </div>
+
+                    <div class="big-info-panel-contact">
+                        <div class="big-info-panel-contact-img-size">
+                            <div class="big-info-panel-contact-img"></div>
+                        </div>
+                        <p>+351 925 099 845</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div class="map-img-size">
+                <div class="map-img"></div>
+            </div>
         </div>
     </div>
 
-</div>
-
-<div class="footer-container">
+    <div class="footer">
         <div class="footer-img-size">
             <div class="footer-img"></div>
         </div>
         <p>© FelixUberShop 2025</p>
-</div>
+    </div>
 
 </body>
 </html>
