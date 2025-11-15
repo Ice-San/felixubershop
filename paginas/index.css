@@ -17,6 +17,7 @@
     --border: oklch(80.016% 0.00963 258.468);
     --border-muted: oklch(90.602% 0.00472 258.61);
 
+    --primary-dark: oklch(66.207% 0.11791 155.434);
     --primary: oklch(73.06% 0.13082 155.622);
     --secondary: oklch(75.45% 0.10498 130.238);
 
@@ -66,8 +67,11 @@ label, input {
 button {
     background: none;
     border: none;
+
+    color: var(--text);
     font-family: "Poppins", Arial, Helvetica, sans-serif;
     font-size: 16px;
+    
     cursor: pointer;
 }
 
