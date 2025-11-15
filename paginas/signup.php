@@ -19,11 +19,16 @@
     <div class="box">
         <div class="box-container">
             <div class="box-title">
-                <h1>Login to your account</h1>
-                <p>Enter your email below to login to your account.</p>
+                <h1>Register to your account</h1>
+                <p>Enter your info below to register to your account.</p>
             </div>
 
             <form action="">
+                <div class="inputs">
+                    <label for="username"><span>*</span> Username</label>
+                    <input type="text" id="username" placeholder="John Doe" required />
+                </div>
+
                 <div class="inputs">
                     <label for="email"><span>*</span> Email</label>
                     <input type="email" id="email" placeholder="user@example.com" required />
@@ -36,7 +41,7 @@
 
                 <div class="inputs">
                     <button>SignIn</button>
-                    <a href="./signup.php">Don't have an account?</a>
+                    <a href="./signin.php">Have an account?</a>
                 </div>
             </form>
         </div>

@@ -38,8 +38,8 @@
     height: auto;
 }
 
-.inputs:first-child {
-    margin-bottom: 10px;
+.inputs:not(.inputs:first-child) {
+    margin-top: 10px;
 }
 
 .inputs > label > span {
