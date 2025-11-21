@@ -23,20 +23,37 @@
                 <p>Enter your info below to register to your account.</p>
             </div>
 
-            <form method="POST" action="./create-user.php">
+            <form id="form" method="POST" action="./create-user.php" novalidate>
                 <div class="inputs">
                     <label for="username"><span>*</span> Username</label>
                     <input type="text" id="username" name="username" placeholder="John Doe" required />
+                    <p id="error-username" class="hide"></p>
                 </div>
 
                 <div class="inputs">
                     <label for="email"><span>*</span> Email</label>
                     <input type="email" id="email" name="email" placeholder="user@example.com" required />
+                    <p id="error-email" class="hide"></p>
+                    
+                    <?php 
+                        if(isset($_SESSION['errorEmail'])) {
+                            echo "<p>" . $_SESSION['errorEmail'] . "</p>";
+                            unset($_SESSION['errorEmail']);
+                        }
+                    ?>
                 </div>
 
                 <div class="inputs">
                     <label for="password"><span>*</span> Password</label>
                     <input type="password" id="password" name="password" required />
+                    <p id="error-password" class="hide"></p>
+
+                    <?php 
+                        if(isset($_SESSION['errorPassword'])) {
+                            echo "<p>" . $_SESSION['errorPassword'] . "</p>";
+                            unset($_SESSION['errorPassword']);
+                        }
+                    ?>
                 </div>
 
                 <div class="inputs">
@@ -46,5 +63,7 @@
             </form>
         </div>
     </div>
+
+    <script src="./signin.js"></script>
 </body>
 </html>
