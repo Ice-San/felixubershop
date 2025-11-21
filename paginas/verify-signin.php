@@ -15,12 +15,19 @@
 
     $data = run_select($conn, 'CALL sign_in(?);', 's', [$email]);
 
-    if (isset($data['error']) || count($data) === 0) {
+    if (isset($data['error'])) {
+        header("Location: ./signin.php");
+        exit;
+    }
+
+    if(count($data) === 0) {
+        $_SESSION['errorEmail'] = 'There is no user with that email...';
         header("Location: ./signin.php");
         exit;
     }
 
     if(!password_verify($password, $data[0]['hashed_password'])) {
+        $_SESSION['errorPassword'] = 'Passwords doesn\'t matches!';
         header("Location: ./signin.php");
         exit;
     }

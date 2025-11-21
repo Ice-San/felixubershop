@@ -32,15 +32,31 @@
                 <p>Enter your email below to login to your account.</p>
             </div>
 
-            <form method="POST" action="./verify-signin.php">
+            <form id="form" method="POST" action="./verify-signin.php" novalidate>
                 <div class="inputs">
                     <label for="email"><span>*</span> Email</label>
                     <input type="email" name="email" id="email" placeholder="user@example.com" required />
+                    <p id="error-email" class="hide"></p>
+                    
+                    <?php 
+                        if(isset($_SESSION['errorEmail'])) {
+                            echo "<p>" . $_SESSION['errorEmail'] . "</p>";
+                            unset($_SESSION['errorEmail']);
+                        }
+                    ?>
                 </div>
 
                 <div class="inputs">
                     <label for="password"><span>*</span> Password</label>
                     <input type="password" name="password" id="password" required />
+                    <p id="error-password" class="hide"></p>
+                    
+                    <?php 
+                        if(isset($_SESSION['errorPassword'])) {
+                            echo "<p>" . $_SESSION['errorPassword'] . "</p>";
+                            unset($_SESSION['errorPassword']);
+                        }
+                    ?>
                 </div>
 
                 <div class="inputs">
@@ -50,5 +66,7 @@
             </form>
         </div>
     </div>
+
+    <script src="./signin.js"></script>
 </body>
 </html>
