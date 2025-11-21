@@ -96,6 +96,13 @@
     height: 100%;
 }
 
+.profile {
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+
+    padding: 10px 12px;
+}
+
 .signin {
     background-color: var(--bg-light);
     border-radius: 4px;

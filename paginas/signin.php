@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['email'])) {
+        header('Location: ./shop.php');
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,15 +32,15 @@
                 <p>Enter your email below to login to your account.</p>
             </div>
 
-            <form action="">
+            <form method="POST" action="./verify-signin.php">
                 <div class="inputs">
                     <label for="email"><span>*</span> Email</label>
-                    <input type="email" id="email" placeholder="user@example.com" required />
+                    <input type="email" name="email" id="email" placeholder="user@example.com" required />
                 </div>
 
                 <div class="inputs">
                     <label for="password"><span>*</span> Password</label>
-                    <input type="password" id="password" required />
+                    <input type="password" name="password" id="password" required />
                 </div>
 
                 <div class="inputs">

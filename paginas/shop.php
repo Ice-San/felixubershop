@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,13 +37,15 @@
             </div>
 
             <div class="navbar-right">
-                <div class="profile hide">
-                    <h2>JD</h2>
-                </div>
-
-                <a href="./signin.php" class="signin">
-                    <p>SignIn</p>
-                </a>
+                <?php if(isset($_SESSION['email'])): ?>
+                    <div class="profile">
+                        <h2>JD</h2>
+                    </div>
+                <?php else: ?>
+                    <a href="./signin.php" class="signin">
+                        <p>SignIn</p>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
