@@ -22,7 +22,7 @@
 <body>
     <div class="navbar">
         <div class="navbar-container">
-            <a href="./" class="navbar-left">
+            <a href="./shop.php" class="navbar-left">
                 <div class="navbar-icon">
                     <div class="navbar-icon-container img-container"></div>
                 </div>

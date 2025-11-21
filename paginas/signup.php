@@ -23,20 +23,20 @@
                 <p>Enter your info below to register to your account.</p>
             </div>
 
-            <form action="">
+            <form method="POST" action="./create-user.php">
                 <div class="inputs">
                     <label for="username"><span>*</span> Username</label>
-                    <input type="text" id="username" placeholder="John Doe" required />
+                    <input type="text" id="username" name="username" placeholder="John Doe" required />
                 </div>
 
                 <div class="inputs">
                     <label for="email"><span>*</span> Email</label>
-                    <input type="email" id="email" placeholder="user@example.com" required />
+                    <input type="email" id="email" name="email" placeholder="user@example.com" required />
                 </div>
 
                 <div class="inputs">
                     <label for="password"><span>*</span> Password</label>
-                    <input type="password" id="password" required />
+                    <input type="password" id="password" name="password" required />
                 </div>
 
                 <div class="inputs">
