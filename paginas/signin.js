@@ -49,7 +49,7 @@ form.addEventListener("submit", e => {
         hasError = true;
     }
 
-    if(passwordInput.length < 6 && errorPassword) {
+    if(passwordInput.length < 5 && errorPassword) {
         errorPassword.innerText = "Password needs to be at least 6 characters!";
         errorPassword.classList.remove("hide");
         hasError = true;
