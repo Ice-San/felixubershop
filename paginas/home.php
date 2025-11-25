@@ -46,10 +46,7 @@
     <div class="hero">
         <div class="title-search-container">
             <div class="title-text">
-                <p>Fresh Groceries Delivered to Your Doorstep</p>
-            </div>
-
-            <div class="title-sub-text">
+                <h2>Fresh Groceries Delivered to Your Doorstep</h2>
                 <p>Quality and Freshness  Guaranteed</p>
             </div>
 
@@ -61,7 +58,6 @@
                         <div class="search-img"></div>
                     </div>
                 </div>
-
                 <button>Search</button>
             </div>
         </div>
@@ -78,8 +74,8 @@
         <div class="information-container">
             <div class="big-info-panel">
                 <h2>About</h2>
-                    <p>FelixUberShop, is your favorite grocery shop to buy your favorite products from your homeand get them in speed of light at your home!</p>
-             </div>
+                <p>FelixUberShop, is your favorite grocery shop to buy your favorite products from your homeand get them in speed of light at your home!</p>
+            </div>
 
             <div class="small-info-panel">
                     <h2>Localization</h2>
