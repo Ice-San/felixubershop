@@ -102,34 +102,39 @@
     <div class="products">
         <div class="products-container">
             <?php foreach($products as $product): ?>
-                <div <?php echo 'data-category="' . $product['category'] . '"'; ?> class="product">
-                    <div class="product-container">
-                        <div class="product-banner">
-                            <p>No Image</p>
-                            <div style="background-image: url('<?php echo $product['product_name']; ?>.png');" class="product-img img-container"></div>
-                        </div>
-
-                        <div class="product-info">
-                            <h2><?php echo $product['product_name']; ?></h2>
-                            <div class="product-price">
-                                <?php if($product['discount'] > 0): ?>
-                                    <p class="price-discount"><?php echo $product['price'] . ' EUR'; ?></p>
-                                    <p class="price-without-discount"><?php echo number_format($product['price'] / (1 - ($product['discount'] / 100)), 2, '.', '') . ' EUR'; ?></p>
-                                <?php else: ?>
-                                    <p><?php echo $product['price'] . ' EUR'; ?></p>
-                                <?php endif ?>
+                <form class="product-form" method="POST" action="./product-info.php">
+                    <input type="hidden" name="product-name" <?php echo 'value="' . $product['product_name'] . '"' ?> />
+                    <input type="hidden" name="product-price" <?php echo 'value="' . $product['price'] . '"' ?> />
+                    
+                    <div <?php echo 'data-category="' . $product['category'] . '"'; ?> class="product">
+                        <div class="product-container">
+                            <div class="product-banner">
+                                <p>No Image</p>
+                                <div style="background-image: url('<?php echo $product['product_name']; ?>.png');" class="product-img img-container"></div>
                             </div>
 
-                            <button class="product-btn">Add to Cart</button>
-                        </div>
-                    </div>
+                            <div class="product-info">
+                                <h2><?php echo $product['product_name']; ?></h2>
+                                <div class="product-price">
+                                    <?php if($product['discount'] > 0): ?>
+                                        <p class="price-discount"><?php echo $product['price'] . ' EUR'; ?></p>
+                                        <p class="price-without-discount"><?php echo number_format($product['price'] / (1 - ($product['discount'] / 100)), 2, '.', '') . ' EUR'; ?></p>
+                                    <?php else: ?>
+                                        <p><?php echo $product['price'] . ' EUR'; ?></p>
+                                    <?php endif ?>
+                                </div>
 
-                    <?php if($product['discount'] > 0): ?>
-                        <div class="product-discount">
-                            <p><span><?php echo $product['discount'] ?></span>% OFF</p>
+                                <button class="product-btn">Add to Cart</button>
+                            </div>
                         </div>
-                    <?php endif ?>
-                </div>
+
+                        <?php if($product['discount'] > 0): ?>
+                            <div class="product-discount">
+                                <p><span><?php echo $product['discount'] ?></span>% OFF</p>
+                            </div>
+                        <?php endif ?>
+                    </div>
+                </form>
             <?php endforeach ?>
         </div>
     </div>
@@ -137,3 +142,7 @@
     <script src="./shop.js"></script>
 </body>
 </html>
+
+<?php
+    close_db($conn);
+?>

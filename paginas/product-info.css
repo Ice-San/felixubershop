@@ -141,10 +141,6 @@
     height: 100%;
 }
 
-.product-img {
-    background-image: url("./chicken.png");
-}
-
 .product-info {
     width: 49%;
     height: 100%;
@@ -160,6 +156,10 @@
 
     width: 100%;
     height: auto;
+}
+
+.product-info-container > h1 {
+    text-transform: capitalize;
 }
 
 .product-info > button {
