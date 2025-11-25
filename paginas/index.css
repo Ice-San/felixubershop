@@ -75,6 +75,17 @@ button {
     cursor: pointer;
 }
 
+input {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+
 a {
     text-decoration: none;
     color: var(--text-muted);

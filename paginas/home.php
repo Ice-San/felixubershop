@@ -46,20 +46,19 @@
     <div class="hero">
         <div class="title-search-container">
             <div class="title-text">
-                <p>Fresh Groceries Delivered to Your Doorstep</p>
-            </div>
-
-            <div class="title-sub-text">
+                <h2>Fresh Groceries Delivered to Your Doorstep</h2>
                 <p>Quality and Freshness  Guaranteed</p>
             </div>
 
             <div class="inputs-button-centralization">
                 <div class="search-input">
                     <input type="text" placeholder="What do you need today?" >
+
+                    <div class="search-img-size">
+                        <div class="search-img"></div>
+                    </div>
                 </div>
-                <div class="button-input">
-                    <button>Search</button>
-                </div>
+                <button>Search</button>
             </div>
         </div>
 
@@ -74,31 +73,22 @@
     <div class="about">
         <div class="information-container">
             <div class="big-info-panel">
-                <div class="big-info-panel-title">
-                    <p>About</p>
-                </div>
-                <div class="big-info-panel-text">
-                    <p>FelixUberShop, is your favorite grocery shop to buy your favorite products from your homeand get them in speed of light at your home!</p>
-                </div>
+                <h2>About</h2>
+                <p>FelixUberShop, is your favorite grocery shop to buy your favorite products from your homeand get them in speed of light at your home!</p>
             </div>
 
             <div class="small-info-panel">
-                <div class="small-info-panel-title">
-                    <p>Localization</p>
-                </div>
-                <div class="small-info-panel-text">
-                     <div class="small-info-panel-img-size">
-                        <div class="small-info-panel-img"></div>
+                    <h2>Localization</h2>
+                    <div class="small-info-panel-text">
+                        <div class="small-info-panel-img-size">
+                            <div class="small-info-panel-img"></div>
+                        </div>
+                        <p>Rotunda da Granja, Castelo Branco, Portugal</p>
                     </div>
-                    <p>Rotunda da Granja, Castelo Branco, Portugal</p>
-                </div>
             </div>
 
             <div class="small-info-panel">
-                <div class="small-info-panel-title">
-                    <p>Working Hours</p>
-                </div>
-
+                <h2>Working Hours</h2>
                 <div class="small-info-panel-text">
                     <div class="small-info-panel-img-size">
                         <div class="small-info-panel-img2"></div>
@@ -108,9 +98,7 @@
             </div>
 
             <div class="big-info-panel">
-                <div class="big-info-panel-title">
-                    <p>Contact</p>
-                </div>
+                <h2>Contact</h2>
                 <div class="big-info-panel-down">
                     <div class="big-info-panel-gmail">
                         <div class="big-info-panel-gmail-img-size">
