@@ -88,4 +88,20 @@
 
         return true;
     }
+
+    function get_user_initials($conn, $query, $types = "", $params = []) {
+        $user = run_select($conn, $query, $types, $params);
+        $username = $user[0]['username'];
+
+        $parts = explode(" ", $username);
+        $initials = "";
+
+        foreach ($parts as $p) {
+            if ($p !== "") {
+                $initials .= strtoupper($p[0]);
+            }
+        }
+
+        return $initials;
+    }
 ?>

@@ -4,6 +4,7 @@
     include_once '../basedados/basedados.h';
     
     $conn = connect_db();
+    $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $products = run_select($conn, 'SELECT * FROM get_all_products');
 ?>
 
@@ -44,7 +45,7 @@
             <div class="navbar-right">
                 <?php if(isset($_SESSION['email'])): ?>
                     <div class="profile">
-                        <h2>JD</h2>
+                        <h2><?php echo $userInitials; ?></h2>
                     </div>
                 <?php else: ?>
                     <a href="./signin.php" class="signin">

@@ -7,7 +7,8 @@
     include_once '../basedados/basedados.h';
 
     $conn = $conn = connect_db();
-    $stock = run_select($conn, 'CALL get_stock(\'' . $productName . '\')');
+    $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+    $stock = run_select($conn, 'CALL get_stock(?)', 's', [$productName]);
 ?>
 
 <!DOCTYPE html>
@@ -45,13 +46,15 @@
             </div>
 
             <div class="navbar-right">
-                <div class="profile hide">
-                    <h2>JD</h2>
-                </div>
-
-                <a href="./signin.php" class="signin">
-                    <p>SignIn</p>
-                </a>
+                <?php if(isset($_SESSION['email'])): ?>
+                    <div class="profile">
+                        <h2><?php echo $userInitials; ?></h2>
+                    </div>
+                <?php else: ?>
+                    <a href="./signin.php" class="signin">
+                        <p>SignIn</p>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
