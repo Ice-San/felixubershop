@@ -9,17 +9,31 @@ categoryBox.forEach(elem => {
 
         if (activeCategory === category) {
             activeCategory = null;
-            products.forEach(product => product.classList.remove('hide'));
+            products.forEach(product => {
+                product.closest(".product-form").classList.remove('hide');
+            });
+
             return;
         }
 
         activeCategory = category;
         products.forEach(product => {
-            if (product.dataset.category.toLowerCase() === category) {
-                product.classList.remove('hide');
+            const form = product.closest(".product-form");
+            
+            if (product.dataset.category === category) {
+                form.classList.remove('hide');
             } else {
-                product.classList.add('hide');
+                form.classList.add('hide');
             }
         });
+    });
+});
+
+products.forEach(product => {
+    product.addEventListener('click', () => {
+        const form = product.closest(".product-form");
+        if (!form) return;
+
+        form.submit();
     });
 });

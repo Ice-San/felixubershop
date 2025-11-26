@@ -1,3 +1,16 @@
+<?php
+    session_start();
+
+    $productName = $_POST['product-name'];
+    $productPrice = $_POST['product-price'];
+
+    include_once '../basedados/basedados.h';
+
+    $conn = $conn = connect_db();
+    $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+    $stock = run_select($conn, 'CALL get_stock(?)', 's', [$productName]);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,13 +46,15 @@
             </div>
 
             <div class="navbar-right">
-                <div class="profile hide">
-                    <h2>JD</h2>
-                </div>
-
-                <a href="./signin.php" class="signin">
-                    <p>SignIn</p>
-                </a>
+                <?php if(isset($_SESSION['email'])): ?>
+                    <div class="profile">
+                        <h2><?php echo $userInitials; ?></h2>
+                    </div>
+                <?php else: ?>
+                    <a href="./signin.php" class="signin">
+                        <p>SignIn</p>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -47,14 +62,14 @@
     <div class="product">
         <div class="product-container">
             <div class="product-size">
-                <div class="product-img img-container"></div>
+                <div style="background-image: url('<?php echo $productName; ?>.png');" class="img-container"></div>
             </div>
 
             <div class="product-info">
                 <div class="product-info-container">
-                    <h1>Chicken</h1>
-                    <p>Price: 9.99 EUR</p>
-                    <p>Stock: 238</p>
+                    <h1><?php echo $productName; ?></h1>
+                    <p>Price: <?php echo $productPrice; ?> EUR</p>
+                    <p>Stock: <?php echo $stock[0]['stock']; ?></p>
                 </div>
 
                 <button>Add to Cart</button>
@@ -63,3 +78,7 @@
     </div>
 </body>
 </html>
+
+<?php
+    close_db($conn);
+?>

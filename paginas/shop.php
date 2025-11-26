@@ -4,6 +4,7 @@
     include_once '../basedados/basedados.h';
     
     $conn = connect_db();
+    $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $products = run_select($conn, 'SELECT * FROM get_all_products');
 ?>
 
@@ -42,67 +43,80 @@
                     <a href="">FOOTER</a>
                 </div>
 
-                <div class="navbar-right">
-                    <?php if(isset($_SESSION['email'])): ?>
-                        <div class="profile">
-                            <h2>JD</h2>
-                        </div>
-                    <?php else: ?>
-                        <a href="./signin.php" class="signin">
-                            <p>SignIn</p>
-                        </a>
-                    <?php endif; ?>
-                </div>
+                <h1>FelixUber<br/>Shop</h1>
+            </a>
+
+            <div class="navbar-middle">
+                <a href="">DISCOVER</a>
+                <a href="">DISCOUNTS</a>
+                <a href="">FOOTER</a>
+            </div>
+
+            <div class="navbar-right">
+                <?php if(isset($_SESSION['email'])): ?>
+                    <div class="profile">
+                        <h2><?php echo $userInitials; ?></h2>
+                    </div>
+                <?php else: ?>
+                    <a href="./signin.php" class="signin">
+                        <p>SignIn</p>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
+    </div>
 
-        <div class="categories">
-            <div class="categories-container">
-                <div class="category-box">  
-                    <div class="fruits img-container">
-                        <div class="category-overlay">
-                            <h2>Fruits</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-box">
-                    <div class="vegetables img-container">
-                        <div class="category-overlay">
-                            <h2>Vegetables</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-box">
-                    <div class="meats img-container">
-                        <div class="category-overlay">
-                            <h2>Meats</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-box">
-                    <div class="cereals img-container">
-                        <div class="category-overlay">
-                            <h2>Cereals</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-box">
-                    <div class="wealth img-container">
-                        <div class="category-overlay">
-                            <h2>Wealth</h2>
-                        </div>
+    <div class="categories">
+        <div class="categories-container">
+            <div class="category-box">
+                <div class="fruits img-container">
+                    <div class="category-overlay">
+                        <h2>Fruits</h2>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="products">
-            <div class="products-container">
-                <?php foreach($products as $product): ?>
+            <div class="category-box">
+                <div class="vegetables img-container">
+                    <div class="category-overlay">
+                        <h2>Vegetables</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="meats img-container">
+                    <div class="category-overlay">
+                        <h2>Meats</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="cereals img-container">
+                    <div class="category-overlay">
+                        <h2>Cereals</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="wealth img-container">
+                    <div class="category-overlay">
+                        <h2>Wealth</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="products">
+        <div class="products-container">
+            <?php foreach($products as $product): ?>
+                <form class="product-form" method="POST" action="./product-info.php">
+                    <input type="hidden" name="product-name" <?php echo 'value="' . $product['product_name'] . '"' ?> />
+                    <input type="hidden" name="product-price" <?php echo 'value="' . $product['price'] . '"' ?> />
+                    
                     <div <?php echo 'data-category="' . $product['category'] . '"'; ?> class="product">
                         <div class="product-container">
                             <div class="product-banner">
@@ -131,8 +145,8 @@
                             </div>
                         <?php endif ?>
                     </div>
-                <?php endforeach ?>
-            </div>
+                </form>
+            <?php endforeach ?>
         </div>
     </div>
 
@@ -144,3 +158,7 @@
     <script src="./popup.js"></script>
 </body>
 </html>
+
+<?php
+    close_db($conn);
+?>

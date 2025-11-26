@@ -116,6 +116,20 @@
     font-weight: 400;
 }
 
+.profile {
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 50px;
+    width: 3vw;
+    height: 3vw;
+    min-height: 50px;
+}
+
 .product {
     padding-top: 25px;
     padding-bottom: 15px;
@@ -141,10 +155,6 @@
     height: 100%;
 }
 
-.product-img {
-    background-image: url("./chicken.png");
-}
-
 .product-info {
     width: 49%;
     height: 100%;
@@ -160,6 +170,10 @@
 
     width: 100%;
     height: auto;
+}
+
+.product-info-container > h1 {
+    text-transform: capitalize;
 }
 
 .product-info > button {
