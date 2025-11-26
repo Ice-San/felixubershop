@@ -1,5 +1,5 @@
--- === DELETE DATABASE ===
-DROP DATABASE felixubershop_db;
+-- === DROP DATABASE ===
+-- DROP DATABASE felixubershop_db;
 
 -- === DELETE DATABASE DATA ===
 
@@ -66,3 +66,4 @@ DROP PROCEDURE IF EXISTS create_user;
 DROP PROCEDURE IF EXISTS sign_in;
 DROP PROCEDURE IF EXISTS get_category_products;
 DROP PROCEDURE IF EXISTS get_product;
+DROP PROCEDURE IF EXISTS get_stock;

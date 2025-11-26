@@ -463,3 +463,12 @@ BEGIN
 	SELECT * FROM get_all_products WHERE product_name = pn;
 END $$
 DELIMITER ;
+
+-- 6. Get Product Stock
+
+DELIMITER $$
+CREATE PROCEDURE get_stock(pn VARCHAR(100))
+BEGIN
+	SELECT stock FROM get_all_products WHERE product_name = pn;
+END $$
+DELIMITER ;
