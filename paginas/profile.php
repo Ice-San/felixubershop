@@ -36,7 +36,7 @@
             </a>
 
             <div class="navbar-middle">
-                <a href="">DISCOVER</a>
+                <a href="./shop.php">DISCOVER</a>
                 <a href="">DISCOUNTS</a>
                 <a href="">FOOTER</a>
             </div>
