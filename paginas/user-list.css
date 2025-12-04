@@ -1,0 +1,453 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-height: 150px;
+    height: 6vw;
+    min-height: 100px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border);
+
+    width: 90%;
+    height: 100%;
+}
+
+.navbar-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 15px;
+
+    width: auto;
+    height: auto;
+    max-height: 100%;
+}
+
+.navbar-left:hover > .navbar-icon {
+    transform: scale(0.9);
+}
+
+.navbar-left:hover > .navbar-icon > .navbar-icon-container {
+    background-image: url("logo-green.png");
+}
+
+.navbar-left:hover > h1 {
+    transform: scale(0.9) translateX(-20px);
+    color: var(--primary);
+}
+
+.navbar-icon {
+    width: 45px;
+    height: 45px;
+
+    transition: all ease-in-out 0.15s;
+}
+
+.navbar-icon-container {
+    background-image: url("logo-black.png");
+    transition: all ease-in-out 0.15s;
+}
+
+.navbar-left > h1 {
+    cursor: pointer;
+    line-height: 25px;
+    transition: all ease-in-out 0.15s;
+}
+
+.navbar-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 15px;
+
+    margin-right: 100px;
+
+    width: auto;
+    height: 100%;
+}
+
+.navbar-middle > a {
+    color: var(--text);
+    font-weight: 600;
+    transition: all 0.15s ease-in-out;
+}
+
+.navbar-middle > a:hover {
+    color: var(--primary);
+    transform: scale(0.9);
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: auto;
+    height: 100%;
+}
+
+.profile {
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 50px;
+    width: 3vw;
+    height: 3vw;
+    min-height: 50px;
+}
+
+.signin {
+    background-color: var(--bg-light);
+    border-radius: 4px;
+
+    padding: 5px 25px;
+
+    transition: all ease-in-out 0.15s;
+}
+
+.signin:hover {
+    background-color: var(--bg-dark);
+    transform: scale(0.9);
+}
+
+.signin > p {
+    cursor: pointer;
+    color: var(--text);
+    font-weight: 400;
+}
+
+.profile-page {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 20px;
+
+    width: 100%;
+    height: 70vh;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: auto;
+    height: 100%;
+}
+
+.info {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    padding: 15px 20px;
+    padding-bottom: 25px;
+
+    min-width: 375px;
+    width: 33vw;
+    height: 100%;
+}
+
+.info-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.info-icon {
+    min-width: 25px;
+    width: 1.5vw;
+
+    min-height: 25px;
+    height: 1.5vw;
+}
+
+.user-add-icon {
+    background-image: url("./add-user-icon.png");
+}
+
+.inputs {
+    margin-top: 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.inputs > label {
+    font-weight: 600;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 5px;
+
+    width: 100%;
+    height: auto;
+}
+
+.search-input {
+    border: 2px solid var(--border-muted);
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-block: 15px;
+    padding: 5px 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.search-input > input {
+    width: 100%;
+    height: 100%;
+}
+
+.search {
+    min-width: 15px;
+    width: 1.2vw;
+
+    min-height: 15px;
+    height: 1.2vw;
+}
+
+.search-icon {
+    background-image: url("./search-icon.png");
+    opacity: 0.5;
+}
+
+.input > input {
+    border: 2px solid var(--border-muted);
+    border-radius: 4px;
+
+    padding: 5px 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.input > select {
+    border: 2px solid var(--border-muted);
+    border-radius: 4px;
+
+    padding: 5px 10px;
+
+    width: 100%;
+    height: auto;
+}
+
+.info > button {
+    background-color: var(--primary);
+    border-radius: 4px;
+
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 15px;
+    padding-block: 8px;
+
+    width: 100%;
+    height: auto;
+
+    transition: all ease-in-out .15s;
+}
+
+.info > button:hover {
+    transform: scale(0.95);
+}
+
+.orders-history {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    padding: 15px 20px;
+
+    min-width: 375px;
+    width: 35vw;
+    height: 100%;
+}
+
+.user-list-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-list-icon {
+    min-width: 25px;
+    width: 1.5vw;
+
+    min-height: 25px;
+    height: 1.5vw;
+}
+
+.user-list-icon-container {
+    background-image: url("./user-list-icon.png");
+}
+
+.users {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    position: relative;
+
+    overflow: auto;
+
+    margin-top: 10px;
+
+    max-height: 75%;
+}
+
+.user {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    cursor: pointer;
+
+    padding: 10px;
+
+    width: 100%;
+    height: auto;
+
+    transition: all ease-in-out .15s;
+}
+
+.user:hover {
+    transform: scale(0.95);
+}
+
+.user-content {
+    display: flex;
+    gap: 10px;
+
+    width: 100%;
+    height: 100%;
+}
+
+.user-delete {
+    box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: default;
+
+    position: absolute;
+
+    padding: 5px;
+
+    transition: all ease-in-out .15s;
+}
+
+.user-delete:hover {
+    transform: scale(0.95);
+}
+
+.delete {
+    width: 30px;
+    height: 30px;
+}
+
+.delete-icon {
+    background-image: url("./delete-icon.png");
+}
+
+.user-left-info > p > span, .user-right-info > p {
+    color: var(--text);
+    font-weight: 600;
+}
+
+@media (max-width: 992px) {
+    .navbar-middle {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 840px) {
+    .profile-page {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .info, .orders-history {
+        margin: 0 10px;
+    }
+
+    .info {
+        width: 95%;
+    }
+
+    .orders-history {
+        width: 95%;
+    }
+}
+
+@media (max-width: 715px) {
+    .navbar-middle {
+        display: none;
+    }
+}
+
+@media (max-width: 516px) {
+    .user {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 432px) {
+    .profile-page {
+        padding: 20px 0px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .navbar-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .navbar-middle > a {
+        font-size: 1.2vw;
+    }
+
+    .navbar-left > h1 {
+        font-size: 1.5vw;
+        line-height: 1.5vw;
+    }
+
+    .signin > p {
+        font-size: 1.2vw;
+    }
+}
