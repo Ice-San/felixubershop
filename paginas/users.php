@@ -17,7 +17,7 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="user-list.css">
+    <link rel="stylesheet" href="users.css">
 
     <!-- Font Link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -129,14 +129,62 @@
                 <form class="user">
                     <div class="user-content">
                         <div class="user-icon">
-                            <p>JD</p>
+                            <h3>JD</h3>
                         </div>
 
                         <div class="user-left-info">
                             <div class="user-title">
                                 <h3>John Doe</h3>
                                 <p data-role="admin">Admin</p>
-                            </div>    
+                            </div>
+
+                            <p>john@example.com</p>
+                            <p>Joined: 10/12/2025</p>
+                        </div>
+                    </div>
+
+                    <div class="user-delete">
+                        <div class="delete">
+                            <div class="delete-icon img-container"></div>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="user">
+                    <div class="user-content">
+                        <div class="user-icon">
+                            <h3>JD</h3>
+                        </div>
+
+                        <div class="user-left-info">
+                            <div class="user-title">
+                                <h3>John Doe</h3>
+                                <p data-role="employee">Employee</p>
+                            </div>
+
+                            <p>john@example.com</p>
+                            <p>Joined: 10/12/2025</p>
+                        </div>
+                    </div>
+
+                    <div class="user-delete">
+                        <div class="delete">
+                            <div class="delete-icon img-container"></div>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="user">
+                    <div class="user-content">
+                        <div class="user-icon">
+                            <h3>JD</h3>
+                        </div>
+
+                        <div class="user-left-info">
+                            <div class="user-title">
+                                <h3>John Doe</h3>
+                                <p data-role="user">User</p>
+                            </div>
 
                             <p>john@example.com</p>
                             <p>Joined: 10/12/2025</p>
