@@ -1,0 +1,385 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-height: 150px;
+    height: 6vw;
+    min-height: 100px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border);
+
+    width: 90%;
+    height: 100%;
+}
+
+.navbar-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 15px;
+
+    width: auto;
+    height: auto;
+    max-height: 100%;
+}
+
+.navbar-left:hover > .navbar-icon {
+    transform: scale(0.9);
+}
+
+.navbar-left:hover > .navbar-icon > .navbar-icon-container {
+    background-image: url("logo-green.png");
+}
+
+.navbar-left:hover > h1 {
+    transform: scale(0.9) translateX(-20px);
+    color: var(--primary);
+}
+
+.navbar-icon {
+    width: 45px;
+    height: 45px;
+
+    transition: all ease-in-out 0.15s;
+}
+
+.navbar-icon-container {
+    background-image: url("logo-black.png");
+    transition: all ease-in-out 0.15s;
+}
+
+.navbar-left > h1 {
+    cursor: pointer;
+    line-height: 25px;
+    transition: all ease-in-out 0.15s;
+}
+
+.navbar-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 15px;
+
+    margin-right: 100px;
+
+    width: auto;
+    height: 100%;
+}
+
+.navbar-middle > a {
+    color: var(--text);
+    font-weight: 600;
+    transition: all 0.15s ease-in-out;
+}
+
+.navbar-middle > a:hover {
+    color: var(--primary);
+    transform: scale(0.9);
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: auto;
+    height: 100%;
+}
+
+.profile {
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 50px;
+    width: 3vw;
+    height: 3vw;
+    min-height: 50px;
+}
+
+.signin {
+    background-color: var(--bg-light);
+    border-radius: 4px;
+
+    padding: 5px 25px;
+
+    transition: all ease-in-out 0.15s;
+}
+
+.signin:hover {
+    background-color: var(--bg-dark);
+    transform: scale(0.9);
+}
+
+.signin > p {
+    cursor: pointer;
+    color: var(--text);
+    font-weight: 400;
+}
+
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 722px;
+}
+
+.order-dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid var(--border);
+    border-radius: 8px;
+
+    padding: 20px;
+
+    width:80% ;
+    height:auto;
+}
+
+.order-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 100%;
+    height: auto;
+}
+
+.order-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid var(--border);
+    border-radius: 8px;
+
+    padding: 10px;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    width: 100%;
+    height: auto;
+}
+
+.order-input > input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: auto;
+}
+
+.search-img-size { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0.5;
+
+    width: 20px;
+    height: 20px;
+}
+.search-img {
+    display: flex;
+
+    background-image: url("./search-icon.png");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    height: 100%;
+}
+
+.orders-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    overflow: auto;
+
+    margin-top: 20px;
+
+    width: 100%;
+    height: 500px;
+}
+
+.order {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+    border: 2px solid var(--border);
+    border-radius: 8px;
+
+    padding: 10px;
+
+    width: 100%;
+    height: auto;
+
+    transition: all ease-in-out .15s;
+}
+
+.order:hover {
+    transform: scale(0.98);
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 100%;
+    height: auto;
+}
+
+.order-info > h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-bottom: 5px;
+
+    width: 100%;
+    height: auto;
+}
+
+
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid var(--border);
+    border-radius: 8px;
+
+    height: 50px;
+    width: 50px;
+
+    transition: all ease-in-out .15s;
+}
+
+.delete-button:hover {
+    transform: scale(0.95);
+}
+
+.delete-button-img-size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+}
+
+.delete-button-img {
+    display: flex;
+
+    background-image: url("./delete-icon.png");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 992px) {
+    .navbar-middle {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 715px) {
+    .navbar-middle {
+        display: none;
+    }
+
+    .order-dashboard {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .order {
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        gap: 10px;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 1800px) {
+     .navbar-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .navbar-left > h1 {
+        line-height: 1.5vw;
+    }
+
+    .content {
+        height: 1440px;
+    }
+
+    .order-dashboard {
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        width: 90%;
+        height: 1300px;
+    }
+
+    .orders-box{
+        height: 1200px;
+
+        gap: 20px;
+    }
+
+    .delete-button{
+        width: 90px;
+        height: 90px;
+
+        margin-right: 30px;
+    }
+
+    .delete-button-img-size{
+        width: 50px;
+        height: 50px;
+    }
+
+    .search-img-size{
+        width: 30px;
+        height: 30px;
+    }
+}
