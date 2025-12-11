@@ -54,7 +54,7 @@
 }
 
 .navbar-icon-container {
-    background-image: url("logo-black.png");
+    background-image: url("./logo-black.png");
     transition: all ease-in-out 0.15s;
 }
 
