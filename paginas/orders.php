@@ -12,10 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FelixUberShop | Orders</title>
 
     <!-- CSS Files -->
-     <link rel="stylesheet" href="order-list.css">
+     <link rel="stylesheet" href="orders.css">
      <link rel="stylesheet" href="index.css">
 
     <!-- Font Link -->

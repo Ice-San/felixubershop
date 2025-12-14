@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="logo-green.png" type="image/x-icon">
-    <title>FelixUberShop - Profile</title>
+    <title>FelixUberShop - Users</title>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="index.css">

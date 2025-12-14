@@ -6,6 +6,11 @@
 
     include_once '../basedados/basedados.h';
 
+    if(!isset($productName) || !isset($productPrice)) {
+        header("Location: ./shop.php");
+        exit;
+    }
+
     $conn = $conn = connect_db();
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $stock = run_select($conn, 'CALL get_stock(?)', 's', [$productName]);
