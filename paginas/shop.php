@@ -7,9 +7,16 @@
 
     if(isset($_SESSION['email'])) {
         $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+        $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     }
 
+    $discount = $_GET['discount'] ?? false;
+    $search = $_POST['search'] ?? '';
+
     $products = run_select($conn, 'SELECT * FROM get_all_products');
+
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +30,7 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="popup.css">
 
     <!-- Font Link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,9 +50,9 @@
                 </a>
 
                 <div class="navbar-middle">
-                    <a href="">DISCOVER</a>
-                    <a href="">DISCOUNTS</a>
-                    <a href="">FOOTER</a>
+                    <a href="./shop.php">DISCOVER</a>
+                    <a href="./shop.php?discount=true">DISCOUNTS</a>
+                    <a href="./home.php?#footer">FOOTER</a>
                 </div>
 
                 <div class="navbar-right">
@@ -152,7 +160,7 @@
 
         <div class="popup-content">
             <div class="popup-header">
-                <h1>Admin Zone</h1>
+                <h1><?php echo $user[0]['user_type'] ?> Zone</h1>
 
                 <div class="close-img-size">
                     <div class="close-img"></div>
@@ -161,35 +169,45 @@
 
             <div class="options">
                 <div class="options-top">
-                    <div class="options-box">
+                    <a href="./profile.php" class="options-box">
                         <p>View Profile</p>
-                    </div>
+                    </a>
 
-                    <div class="options-box">
+                    <a href="./orders.php" class="options-box">
                         <p>Manage Orders</p>
-                    </div>
+                    </a>
 
-                    <div class="options-box">
+                    <a href="./cart.php" class="options-box">
                         <p>Cart</p>
-                    </div>
+                    </a>
                 </div>
 
-                <div class="options-bottom">
-                    <div class="options-box2">
-                        <p>Manage Products</p>
-                    </div>
+                <?php if($user[0]['user_type'] === 'employee' || $user[0]['user_type'] === 'admin'): ?>
+                    <div class="options-bottom">
+                        <?php if($user[0]['user_type'] === 'admin'): ?>
+                            <a href="./products.php" class="options-box2">
+                                <p>Manage Products</p>
+                            </a>
+                        <?php endif ?>
 
-                    <div class="options-box2">
-                        <p>Manage Users</p>
+                        <a href="./users.php" class="options-box2">
+                            <p>Manage Users</p>
+                        </a>
                     </div>
-                </div>
+                <?php endif ?>
 
-                <div class="popup-footer">
-                    <p>Log Out</p>
-                </div>
+                <form method="POST" action="./logout.php" class="popup-footer">
+                    <input type="hidden" name="previous_url" value="<?php echo htmlspecialchars($current_url); ?>">
+                    <button>Log Out</button>
+                </form>
             </div>
         </div>
     </div>
+
+    <?php
+        echo '<input id="discount-input" type="hidden" value="'. htmlspecialchars($discount) .'" />';
+        echo '<input id="search-input" type="hidden" value="'. htmlspecialchars($search) .'" />';
+    ?>
 
     <script src="./shop.js"></script>
     <script src="./popup.js"></script>

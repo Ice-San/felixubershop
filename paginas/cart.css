@@ -54,7 +54,7 @@
 }
 
 .navbar-icon-container {
-    background-image: url("logo-black.png");
+    background-image: url("./logo-black.png");
     transition: all ease-in-out 0.15s;
 }
 
@@ -104,10 +104,22 @@
     justify-content: center;
     align-items: center;
 
+    cursor: pointer;
+
     min-width: 50px;
     width: 3vw;
     height: 3vw;
     min-height: 50px;
+
+    transition: all ease-in-out .15s;
+}
+
+.profile > h2 {
+    cursor: pointer;
+}
+
+.profile:hover {
+    transform: scale(0.9);
 }
 
 .signin {
