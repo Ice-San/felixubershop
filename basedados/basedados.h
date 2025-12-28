@@ -67,26 +67,27 @@
         $stmt = mysqli_prepare($conn, $query);
 
         if (!$stmt) {
-            return ["error" => mysqli_error($conn)];
+            return;
         }
 
         if (!empty($params)) {
             if (!mysqli_stmt_bind_param($stmt, $types, ...$params)) {
-                return ["error" => mysqli_stmt_error($stmt)];
+                mysqli_stmt_close($stmt);
+                return;
             }
         }
 
         if (!mysqli_stmt_execute($stmt)) {
-            return ["error" => mysqli_stmt_error($stmt)];
+            mysqli_stmt_close($stmt);
+            return;
         }
 
+        $affected_rows = mysqli_stmt_affected_rows($stmt);
         mysqli_stmt_close($stmt);
 
         while (mysqli_more_results($conn)) {
             mysqli_next_result($conn);
         }
-
-        return true;
     }
 
     function get_user_initials($conn, $query, $types = "", $params = []) {

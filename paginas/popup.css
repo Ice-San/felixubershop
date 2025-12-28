@@ -45,8 +45,8 @@ body {
 
     margin: 10px;
 
-    height: 500px;
     width: 900px;
+    height: 575px;
 }
 
 .popup-header{
@@ -233,6 +233,25 @@ body {
 
     width: 100%;
     height: 100%;
+}
+
+.savebtn {
+    background-color: var(--primary);
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    margin-top: 15px;
+    padding-block: 10px;
+
+    width: 100%;
+    height: auto;
+
+    transition: all ease-in-out .15s;
+}
+
+.savebtn:hover {
+    transform: scale(0.95);
 }
 
 @media (max-width: 600px) {

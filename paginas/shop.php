@@ -13,7 +13,7 @@
     $discount = $_GET['discount'] ?? false;
     $search = $_POST['search'] ?? '';
 
-    $products = run_select($conn, 'SELECT * FROM get_all_products');
+    $products = run_select($conn, 'SELECT * FROM get_all_products WHERE stock > 0');
 
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -116,7 +116,7 @@
         <div class="products">
             <div class="products-container">
                 <?php foreach($products as $product): ?>
-                    <form class="product-form" method="POST" action="./product-info.php">
+                    <form class="<?php echo isset($_SESSION['email']) ? 'product-form' : 'product-form-without-button'; ?>" method="POST" action="./product-info.php">
                         <input type="hidden" name="product-name" <?php echo 'value="' . $product['product_name'] . '"' ?> />
                         <input type="hidden" name="product-price" <?php echo 'value="' . $product['price'] . '"' ?> />
                         
@@ -139,7 +139,9 @@
                                         <?php endif ?>
                                     </div>
 
-                                    <button class="product-btn">Add to Cart</button>
+                                    <?php if(isset($_SESSION['email'])): ?>
+                                        <button type="button" class="product-btn">Add to Cart</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -149,6 +151,10 @@
                                 </div>
                             <?php endif ?>
                         </div>
+                    </form>
+
+                    <form id="add-to-cart-form-<?php echo str_replace(' ', '-', $product['product_name']); ?>" method="POST" action="./add-to-cart.php" class="hide">
+                        <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
                     </form>
                 <?php endforeach ?>
             </div>

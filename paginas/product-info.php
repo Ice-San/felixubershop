@@ -12,7 +12,11 @@
     }
 
     $conn = $conn = connect_db();
-    $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+
+    if(isset($_SESSION['email'])) {
+        $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+    }
+    
     $stock = run_select($conn, 'CALL get_stock(?)', 's', [$productName]);
 ?>
 
@@ -64,7 +68,9 @@
         </div>
     </div>
 
-    <div class="product">
+    <form method="POST" action="./add-to-cart.php" class="product">
+        <input type="hidden" name="product-name" value="<?php echo $productName; ?>">
+
         <div class="product-container">
             <div class="product-size">
                 <div style="background-image: url('<?php echo $productName; ?>.png');" class="img-container"></div>
@@ -80,7 +86,7 @@
                 <button>Add to Cart</button>
             </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>
 

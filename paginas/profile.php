@@ -11,7 +11,17 @@
     }
 
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
-    $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+
+    $infoUser = $_POST['user-from-list'] ?? '';
+    if (!empty($infoUser)) {
+        $user = run_select($conn, 'CALL get_user(?)', 's', [$infoUser]);
+        $ordersHistory = run_select($conn, 'CALL get_done_orders(?)', 's', [$infoUser]);
+    } else {
+        $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+        $ordersHistory = run_select($conn, 'CALL get_done_orders(?)', 's', [$_SESSION['email']]);
+    }
+
+    $popupUser = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
 
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -69,18 +79,14 @@
 
         <div class="profile-page">
             <div class="account-info">
-                <form class="info">
+                <form method="POST" action="./edit-user.php" class="info">
                     <h2>Account Info</h2>
 
                     <div class="inputs">
                         <label for="username">Username</label>
 
                         <div class="input">
-                            <input id="username" type="text" <?php echo 'value="'. $user[0]['username'] .'"'; ?> disabled />
-
-                            <button>
-                                <div class="edit-btn img-container"></div>
-                            </button>
+                            <input id="username" name="username" type="text" <?php echo 'value="'. $user[0]['username'] .'"'; ?> disabled />
                         </div>
                     </div>
 
@@ -88,11 +94,7 @@
                         <label for="email">Email</label>
 
                         <div class="input">
-                            <input id="email" type="email" <?php echo 'value="'. $user[0]['email'] .'"'; ?> disabled />
-                            
-                            <button>
-                                <div class="edit-btn img-container"></div>
-                            </button>
+                            <input id="email" name="email" type="email" <?php echo 'value="'. $user[0]['email'] .'"'; ?> readonly />
                         </div>
                     </div>
 
@@ -100,11 +102,7 @@
                         <label for="password">Password</label>
 
                         <div class="input">
-                            <input id="password" type="password" value="****" disabled />
-                            
-                            <button>
-                                <div class="edit-btn img-container"></div>
-                            </button>
+                            <input id="password" name="password" type="password" value="****" disabled />
                         </div>
                     </div>
 
@@ -112,12 +110,14 @@
                         <label for="address">Address</label>
 
                         <div class="input">
-                            <input id="address" type="text" <?php echo 'value="'. $user[0]['address'] .'"'; ?> disabled />
-                            
-                            <button>
-                                <div class="edit-btn img-container"></div>
-                            </button>
+                            <input id="address" name="address" type="text" <?php echo 'value="'. $user[0]['address'] .'"'; ?> disabled />
                         </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button id="edit-btn" type="button">Editar</button>
+                        <button id="save-btn" type="submit" style="display: none;">Guardar</button>
+                        <button id="cancel-btn" type="button" style="display: none;">Cancelar</button>
                     </div>
                 </form>
 
@@ -128,8 +128,15 @@
                     </div>
 
                     <div class="money-options">
-                        <button>Remove Money</button>
-                        <button>Add Money</button>
+                        <form method="POST" action="remove-money.php">
+                            <input type="hidden" name="email" value="<?php echo $user[0]['email']; ?>">
+                            <button>Remove Money</button>
+                        </form>
+
+                        <form method="POST" action="add-money.php">
+                            <input type="hidden" name="email" value="<?php echo $user[0]['email']; ?>">
+                            <button>Add Money</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -137,18 +144,20 @@
             <div class="orders-history">
                 <h2>Orders History</h2>
 
-                <div class="orders">
-                    <div class="order">
-                        <div class="order-left-info">
-                            <p><span>To: </span>Rua das Flores Nº22</p>
-                            <p><span>Estimated arrival: </span> 16:52 PM</p>
-                        </div>
+                <?php foreach($ordersHistory as $orders): ?>
+                    <div class="orders">
+                        <div class="order">
+                            <div class="order-left-info">
+                                <p><span>To: </span><?php echo $orders['destiny']; ?></p>
+                                <p><span>Estimated arrival: </span><?php echo date('H:i', strtotime($orders['arrival_time'])); ?></p>
+                            </div>
 
-                        <div class="order-right-info">
-                            <p>21:03h - 13/05/2025<p>
+                            <div class="order-right-info">
+                                <p><?php echo date('H:i\h - d/m/Y', strtotime($orders['created_at'])); ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -158,7 +167,7 @@
 
         <div class="popup-content">
             <div class="popup-header">
-                <h1><?php echo $user[0]['user_type'] ?> Zone</h1>
+                <h1><?php echo $popupUser[0]['user_type'] ?> Zone</h1>
 
                 <div class="close-img-size">
                     <div class="close-img"></div>
@@ -180,9 +189,9 @@
                     </a>
                 </div>
 
-                <?php if($user[0]['user_type'] === 'employee' || $user[0]['user_type'] === 'admin'): ?>
+                <?php if($popupUser[0]['user_type'] === 'employee' || $popupUser[0]['user_type'] === 'admin'): ?>
                     <div class="options-bottom">
-                        <?php if($user[0]['user_type'] === 'admin'): ?>
+                        <?php if($popupUser[0]['user_type'] === 'admin'): ?>
                             <a href="./products.php" class="options-box2">
                                 <p>Manage Products</p>
                             </a>
@@ -203,6 +212,7 @@
     </div>
 
     <script src="./popup.js"></script>
+    <script src="./profile.js"></script>
 </body>
 </html>
 

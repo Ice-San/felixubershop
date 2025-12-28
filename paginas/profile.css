@@ -255,22 +255,22 @@
     gap: 10px;
 }
 
-.money-options > button {
+.money-options > form > button {
     border-radius: 4px;
     padding: 5px 10px;
 
     transition: all ease-in-out .15s;
 }
 
-.money-options > button:first-child {
+.money-options > form:first-child > button {
     background-color: var(--danger);
 }
 
-.money-options > button:last-child {
+.money-options > form:last-child > button {
     background-color: var(--primary);
 }
 
-.money-options > button:hover {
+.money-options > form > button:hover {
     transform: scale(0.9);
 }
 
@@ -313,6 +313,45 @@
 .order-left-info > p > span, .order-right-info > p {
     color: var(--text);
     font-weight: 600;
+}
+
+#edit-btn, #save-btn {
+    background-color: var(--primary);
+}
+
+#cancel-btn {
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+
+    width: 100%;
+}
+
+.form-buttons > button {
+    border-radius: 4px;
+
+    color: var(--text);
+    font-weight: 600;
+
+    padding: 10px 20px;
+    cursor: pointer;
+
+    transition: all ease-in-out 0.15s;
+
+    min-width: 80px;
+    width: 100%;
+}
+
+.form-buttons > button:hover {
+    transform: scale(0.95);
 }
 
 @media (max-width: 992px) {

@@ -104,10 +104,22 @@
     justify-content: center;
     align-items: center;
 
+    cursor: pointer;
+
     min-width: 50px;
     width: 3vw;
     height: 3vw;
     min-height: 50px;
+
+    transition: all ease-in-out .15s;
+}
+
+.profile > h2 {
+    cursor: pointer;
+}
+
+.profile:hover {
+    transform: scale(0.9);
 }
 
 .signin {
@@ -249,10 +261,16 @@
     border: 2px solid var(--border-muted);
     border-radius: 4px;
 
+    text-transform: capitalize;
+
     padding: 5px 10px;
 
     width: 100%;
     height: auto;
+}
+
+.input > select > option {
+    text-transform: capitalize;
 }
 
 .info > button {
@@ -374,6 +392,10 @@
     gap: 15px;
 }
 
+.user-title > h3 {
+    text-transform: capitalize;
+}
+
 .user-title > p[data-role=admin] {
     background-color: var(--text);
     color: var(--bg);
@@ -383,11 +405,12 @@
     background-color: var(--primary);
 }
 
-.user-title > p[data-role=user] {
+.user-title > p[data-role=client] {
     background-color: var(--secondary);
 }
 
 .user-title > p {
+    text-transform: capitalize;
     border-radius: 4px;
     color: var(--text);
     padding: 2px 10px;
@@ -428,6 +451,11 @@
 .user-left-info > p > span, .user-right-info > p {
     color: var(--text);
     font-weight: 600;
+}
+
+span {
+    color: var(--text-muted) !important;
+    font-weight: 400 !important;
 }
 
 @media (max-width: 992px) {

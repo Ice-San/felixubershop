@@ -243,6 +243,11 @@
     height: 300px;
 }
 
+.product-form-without-button {
+    width: 250px;
+    height: 200px;
+}
+
 .product {
     background-color: var(--bg-dark);
 

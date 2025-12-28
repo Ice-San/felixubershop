@@ -332,6 +332,18 @@
     height: 100%;
 }
 
+.minus-button-img{
+    display: flex;
+
+    background-image: url("./minus-icon.png");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    height: 100%;
+}
+
 .checkout{
     display: flex;
     flex-direction: column;

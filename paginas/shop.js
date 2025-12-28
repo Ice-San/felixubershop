@@ -74,3 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.querySelectorAll('.product-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const form = btn.closest('.product-form');
+        const productName = form.querySelector('input[name="product-name"]').value;
+        const formatName = productName.replace(/ /g, '-');
+
+        const addToCartForm = document.getElementById('add-to-cart-form-' + formatName);
+
+        if (addToCartForm) {
+            addToCartForm.submit();
+        }
+    });
+});

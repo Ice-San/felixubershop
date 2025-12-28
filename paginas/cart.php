@@ -5,11 +5,21 @@
     
     $conn = connect_db();
 
-    if(isset($_SESSION['email'])) {
-        $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
-        $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+    if(!isset($_SESSION['email'])) {
+        header("Location: ./signin.php");
+        exit();
     }
 
+    $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+    $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
+    $order = run_select($conn, 'CALL get_pending_orders(?)', 's', [$_SESSION['email']]);
+
+    if (count($order) === 1) {
+        $products = run_select($conn, 'CALL get_products_order(?, ?)', 'ss', [$_SESSION['email'], $order[0]['order_name']]);
+    } else {
+        $products = [];
+    }
+    
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
@@ -19,6 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo-green.png" type="image/x-icon">
     <title>FelixUberShop | Cart</title>
 
     <!-- CSS Files -->
@@ -66,114 +77,81 @@
         <div class="cart-container">
             <div class="orders">
                 <div class="order-header">
-                    <h1>Order 1</h1>
-                    <p>Estimated arrival: 11:30h - 10/05/2025</p>
+                    <h1><?php echo count($order) === 1 ? $order[0]['order_name'] : "..." ?></h1>
+                    <p>Estimated arrival: <?php echo count($order) === 1 ? date('H:i\h - d/m/Y', strtotime($order[0]['arrival_time'])) : "No data" ?></p>
                 </div>
 
                 <div class="total-header">
-                    <p>Total: 47.95 EUR</p>   
+                    <p>Total: <?php echo count($order) === 1 ? $order[0]['total_price'] : "No price" ?></p>   
                 </div>
 
                 <div class="product-container">
-                    <div class="product">
-                        <div class="product-info">
-                            <h1>Frango</h1>
-                            <p>Quantity : 1</p>
-                            <p>Total Price: 9.99 EUR</p>
-                        </div>
-
-                        <div class="product-buttons">
-                            <div class="add-button">
-                                <div class="add-button-img-size">
-                                    <div class="add-button-img"></div>
-                                </div>
+                    <?php foreach($products as $product): ?>
+                        <div class="product">
+                            <div class="product-info">
+                                <h1><?php echo $product['product_name']; ?></h1>
+                                <p>Quantity : <?php echo $product['quantity']; ?></p>
+                                <p>Total Price: <?php echo $product['product_price']; ?></p>
                             </div>
 
-                            <div class="delete-button">
-                                <div class="delete-button-img-size">
-                                    <div class="delete-button-img"></div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
+                            <div class="product-buttons">
+                                <form method="POST" action="./add-product-to-cart.php">
+                                    <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
 
-                    <div class="product">
-                        <div class="product-info">
-                            <h1>Maça</h1>
-                            <p>Quantity : 1</p>
-                            <p>Total Price: 9.99 EUR</p>
-                        </div>
+                                    <button class="add-button">
+                                        <div class="add-button-img-size">
+                                            <div class="add-button-img"></div>
+                                        </div>
+                                    </button>
+                                </form>
 
-                        <div class="product-buttons">
-                            <div class="add-button">
-                                <div class="add-button-img-size">
-                                    <div class="add-button-img"></div>
-                                </div>
+                                <?php if($product['quantity'] > 1): ?>
+                                    <form method="POST" action="./remove-quantity.php">
+                                        <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
+                                        <input type="hidden" name="order-name" value="<?php echo $order[0]['order_name']; ?>" />
+
+                                        <button class="delete-button">
+                                            <div class="delete-button-img-size">
+                                                <div class="minus-button-img"></div>
+                                            </div>
+                                        </button>
+                                    </form>
+                                <?php else: ?>
+                                    <form method="POST" action="./remove-product.php">
+                                        <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
+                                        <input type="hidden" name="order-name" value="<?php echo $order[0]['order_name']; ?>" />
+
+                                        <button class="delete-button">
+                                            <div class="delete-button-img-size">
+                                                <div class="delete-button-img"></div>
+                                            </div>
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
                             </div>
-
-                            <div class="delete-button">
-                                <div class="delete-button-img-size">
-                                    <div class="delete-button-img"></div>
-                                </div>
-                            </div> 
                         </div>
-                    </div>
-
-                    <div class="product">
-                        <div class="product-info">
-                            <h1>Shampoo</h1>
-                            <p>Quantity : 1</p>
-                            <p>Total Price: 9.99 EUR</p>
-                        </div>
-
-                        <div class="product-buttons">
-                            <div class="add-button">
-                                <div class="add-button-img-size">
-                                    <div class="add-button-img"></div>
-                                </div>
-                            </div>
-
-                            <div class="delete-button">
-                                <div class="delete-button-img-size">
-                                    <div class="delete-button-img"></div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-
-                    <div class="product">
-                        <div class="product-info">
-                            <h1>Banana</h1>
-                            <p>Quantity : 1</p>
-                            <p>Total Price: 9.99 EUR</p>
-                        </div>
-
-                        <div class="product-buttons">
-                            <div class="add-button">
-                                <div class="add-button-img-size">
-                                    <div class="add-button-img"></div>
-                                </div>
-                            </div>
-
-                            <div class="delete-button">
-                                <div class="delete-button-img-size">
-                                    <div class="delete-button-img"></div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
-            <div class="checkout">
+            <form method="POST" action="./payment.php" class="checkout">
                 <h1>Checkout</h1>
-                <p>Order Name</p>
 
+                <p>Order Name</p>
                 <div class="check-out-input">
-                    <input type="text" placeholder="Order 1">
+                    <input id="order-name" type="text" name="order-name" placeholder="order1" required>
                 </div>
+
+                <p>Destiny</p>
+                <div class="check-out-input">
+                    <input type="text" name="destiny" placeholder="Rua das Flores" value="<?php echo $user[0]['address'];?>" required>
+                </div>
+
+                <input type="hidden" name="money" value="<?php echo $user[0]['money'];?>">
+                <input type="hidden" name="total-price" value="<?php echo $order[0]['total_price'];?>">
+
                 <button>buy</button>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -227,6 +205,7 @@
     </div>
 
     <script src="./popup.js"></script>
+    <script src="./cart.js"></script>
 </body>
 </html>
 

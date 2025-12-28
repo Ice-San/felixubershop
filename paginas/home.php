@@ -168,30 +168,30 @@
 
             <div class="options">
                 <div class="options-top">
-                    <div class="options-box">
+                    <a href="./profile.php" class="options-box">
                         <p>View Profile</p>
-                    </div>
+                    </a>
 
-                    <div class="options-box">
+                    <a href="./orders.php" class="options-box">
                         <p>Manage Orders</p>
-                    </div>
+                    </a>
 
-                    <div class="options-box">
+                    <a href="./cart.php" class="options-box">
                         <p>Cart</p>
-                    </div>
+                    </a>
                 </div>
 
                 <?php if($user[0]['user_type'] === 'employee' || $user[0]['user_type'] === 'admin'): ?>
                     <div class="options-bottom">
                         <?php if($user[0]['user_type'] === 'admin'): ?>
-                            <div class="options-box2">
+                            <a href="./products.php" class="options-box2">
                                 <p>Manage Products</p>
-                            </div>
+                            </a>
                         <?php endif ?>
 
-                        <div class="options-box2">
+                        <a href="./users.php" class="options-box2">
                             <p>Manage Users</p>
-                        </div>
+                        </a>
                     </div>
                 <?php endif ?>
 
