@@ -16,23 +16,23 @@
     $productDiscount = $_POST['discount'];
 
     if(!isset($productName) || !isset($productPrice) || !isset($productStock) || !isset($productCategory) || !isset($productDiscount)) {
-        header("Location: ./products.php");
+        header("Location: ./products.php?error=Some required fields are missing");
         exit();
     }
 
-    if(!filter_var($productPrice, FILTER_VALIDATE_FLOAT) || !filter_var($productStock, FILTER_VALIDATE_INT)) {
-        header("Location: ./products.php");
+    if($productPrice <= 0) {
+        header("Location: ./products.php?error=Product price must be bigger than 0!");
         exit();
     }
 
-    if($productPrice < 0 || $productStock < 0) {
-        header("Location: ./products.php");
+    if(filter_var($productPrice, FILTER_VALIDATE_FLOAT) === false || filter_var($productStock, FILTER_VALIDATE_INT) === false) {
+        header("Location: ./products.php?error=Product price or stock must be an valid number!");
         exit();
     }
 
     $discountsAvailable = ['0', '25', '50', '75', '90'];
     if(!in_array($productDiscount, $discountsAvailable, true)) {
-        header("Location: ./products.php");
+        header("Location: ./products.php?error=You didnt provide an valid value in discounts input!");
         exit();
     }
 

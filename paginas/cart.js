@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.checkout').addEventListener('submit', (e) => {
+    document.querySelector('.checkout')?.addEventListener('submit', (e) => {
         const orderNameInput = document.getElementById('order-name');
         const orderNameValue = orderNameInput.value.trim();
 
@@ -14,11 +14,13 @@ window.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
     });
+});
 
+window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
 
     if (error) {
         alert(error);
     }
-});
+})

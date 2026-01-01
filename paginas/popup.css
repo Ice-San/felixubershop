@@ -43,10 +43,10 @@ body {
     border: 1px var(--border) solid;
     border-radius: 8px;
 
-    margin: 10px;
-
     width: 900px;
-    height: 575px;
+    height: auto;
+
+    padding-bottom: 35px;
 }
 
 .popup-header{
@@ -98,6 +98,7 @@ body {
 .popup-header > h1{
     font-size: 32px;
     font-weight: light;
+    margin-bottom: 10px;
 }
 
 .close-img-size{
@@ -128,7 +129,7 @@ body {
     height: 100%;
 }
 
-.options{
+.options {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,7 +137,19 @@ body {
 
     margin: 10px;
 
-    height: 80%;
+    height: 400px;
+    width: 95%;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px;
+
+    height: auto;
     width: 95%;
 }
 

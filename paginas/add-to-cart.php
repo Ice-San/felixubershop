@@ -17,7 +17,7 @@
         exit();
     }
 
-    run_modify($conn, 'CALL add_product(?, ?)', 'ss', [$productName, $_SESSION['email']]);
+    run_modify($conn, 'CALL add_product(?, ?, ?, ?)', 'ssss', [$productName, $_SESSION['email'], '', 'pending']);
     close_db($conn);
 
     header('Location: ./shop.php');

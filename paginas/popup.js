@@ -1,5 +1,7 @@
 const profile = document.querySelector('.profile');
 const productsContent = document.querySelectorAll(".user-content");
+const addMoneyBtn = document.getElementById("add-money");
+const editOrder = document.getElementById("order-edit-btn");
 
 const closebtnArray = document.querySelectorAll('.close-img');
 const popupcloseArray = document.querySelectorAll('.popup-close');
@@ -70,5 +72,8 @@ closebtnArray[0]?.addEventListener('click', () => togglePopup(false, '', 0));
 popupcloseArray[0]?.addEventListener('click', () => togglePopup(false, '', 0));
 
 productsContent?.forEach(product => product.addEventListener('click', () => togglePopup(true, product, 1)));
+addMoneyBtn?.addEventListener('click', () => togglePopup(true, '', 1));
+editOrder?.addEventListener('click', () => togglePopup(true, '', 1));
+
 closebtnArray[1]?.addEventListener('click', () => togglePopup(false, '', 1));
 popupcloseArray[1]?.addEventListener('click', () => togglePopup(false, '', 1));

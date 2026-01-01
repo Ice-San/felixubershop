@@ -15,7 +15,7 @@
     $order = run_select($conn, 'CALL get_pending_orders(?)', 's', [$_SESSION['email']]);
 
     if (count($order) === 1) {
-        $products = run_select($conn, 'CALL get_products_order(?, ?)', 'ss', [$_SESSION['email'], $order[0]['order_name']]);
+        $products = run_select($conn, 'CALL get_products_order(?, ?, ?, ?)', 'ssss', [$_SESSION['email'], $order[0]['order_name'], 'pending', $order[0]['arrival_time']]);
     } else {
         $products = [];
     }
@@ -95,8 +95,11 @@
                             </div>
 
                             <div class="product-buttons">
-                                <form method="POST" action="./add-product-to-cart.php">
+                                <form method="POST" action="./add-product.php">
                                     <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
+                                    <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>" />
+                                    <input type="hidden" name="order-name" value="order1" />
+                                    <input type="hidden" name="order-status" value="pending" />
 
                                     <button class="add-button">
                                         <div class="add-button-img-size">

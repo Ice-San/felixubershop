@@ -133,10 +133,8 @@
                             <button>Remove Money</button>
                         </form>
 
-                        <form method="POST" action="add-money.php">
-                            <input type="hidden" name="email" value="<?php echo $user[0]['email']; ?>">
-                            <button>Add Money</button>
-                        </form>
+                        
+                        <button id="add-money">Add Money</button>
                     </div>
                 </div>
             </div>
@@ -211,8 +209,37 @@
         </div>
     </div>
 
+    <div class="popup hide">
+        <div class="popup-close"></div>
+
+        <div class="popup-content">
+            <div class="popup-header">
+                <h1>Add Money</h1>
+
+                <div class="close-img-size">
+                    <div class="close-img"></div>
+                </div>
+            </div>
+
+            <form method="POST" action="./add-money.php" class="option">
+                <div class="inputs">
+                    <label for="user-money">Money</label>
+
+                    <input name="email" type="hidden" value="<?php echo $user[0]['email']; ?>" />
+
+                    <div class="input">
+                        <input id="user-money" name="money" type="number" step="0.01" value="<?php echo $user[0]['money']; ?>" required />
+                    </div>
+                </div>
+
+                <button type="submit" class="savebtn">Add Money</button>
+            </form>
+        </div>
+    </div>
+
     <script src="./popup.js"></script>
     <script src="./profile.js"></script>
+    <script src="./cart.js"></script>
 </body>
 </html>
 

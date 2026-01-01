@@ -21,7 +21,7 @@
     }
 
     if($money < 0 || $totalPrice < 0 || $totalPrice > $money) {
-        header("Location: ./cart.php");
+        header("Location: ./cart.php?error=It seems that you dont have enougth money...");
         exit();
     }
 
@@ -34,7 +34,7 @@
         }
     }
 
-    run_modify($conn, 'CALL ongoin_order(?, ?, ?)', 'sss', [
+    run_modify($conn, 'CALL ongoing_order(?, ?, ?)', 'sss', [
         $_SESSION['email'],
         $orderName,
         $destiny

@@ -289,6 +289,7 @@
 
     <script src="./popup.js"></script>
     <script src="./products.js"></script>
+    <script src="./cart.js"></script>
 </body>
 </html>
 

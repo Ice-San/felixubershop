@@ -2,7 +2,7 @@
     session_start();
 
     include_once '../basedados/basedados.h';
-
+    
     $conn = connect_db();
 
     if (!isset($_SESSION['email'])) {
@@ -11,37 +11,29 @@
     }
 
     $productName = $_POST['product-name'];
-    $orderName = $_POST['order-name'];
     $email = $_POST['email'];
+    $orderName = $_POST['order-name'];
     $orderStatus = $_POST['order-status'];
 
     if (!isset($email) || !isset($orderStatus) || !isset($orderName)) {
         header('Location: ./orders.php');
         exit();
     }
-
-    if(!isset($productName) || !isset($orderName)) {
-        header("Location: ./cart.php");
+    
+    if (!isset($_POST['product-name'])) {
+        header('Location: ./cart.php');
         exit();
     }
 
     try {
         if($orderName === "order1") {
-            run_modify($conn, 'CALL remove_product_quantity(?, ?, ?, ?)', 'ssss', [
-                $_SESSION['email'],
-                $productName,
-                $orderName,
-                "pending",
-            ]);
+            run_modify($conn, 'CALL add_product(?, ?, ?, ?)', 'ssss', [$productName, $email, '', $orderStatus]);
+            close_db($conn);
         }
 
         if($orderName !== "order1") {
-            run_modify($conn, 'CALL remove_product_quantity(?, ?, ?, ?)', 'ssss', [
-                $email,
-                $productName,
-                $orderName,
-                $orderStatus,
-            ]);
+            run_modify($conn, 'CALL add_product(?, ?, ?, ?)', 'ssss', [$productName, $email, $orderName, $orderStatus]);
+            close_db($conn);
         }
     } catch(Exception $e) {
         if($orderStatus === "ongoing") {
@@ -54,8 +46,6 @@
             exit();
         }
     }
-
-    close_db($conn);
 
     if($orderStatus === "ongoing") {
         header('Location: ./orders.php');
