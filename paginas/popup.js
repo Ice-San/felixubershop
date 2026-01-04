@@ -1,28 +1,35 @@
+// Obtêm os elements clicaveis
 const profile = document.querySelector('.profile');
 const productsContent = document.querySelectorAll(".user-content");
 const addMoneyBtn = document.getElementById("add-money");
 const editOrder = document.getElementById("order-edit-btn");
 
+// Obtêm os elementes para fechar o PopUp
 const closebtnArray = document.querySelectorAll('.close-img');
 const popupcloseArray = document.querySelectorAll('.popup-close');
 const popupArray = document.querySelectorAll(".popup");
 
+// Obtêm os containers a esconder na pagina
 const containersSelectors = [
     '.products-container',
     '.about',
     '.footer'
 ];
+
+// Containers a Remover temporariamente
 const containersSelectorsChilds = [
     'about-flex',
     'footer-flex'
 ];
 
+// Obtêm os containers que estão presentes na pagina
 function getActiveContainers() {
     return containersSelectors
         .map(selector => document.querySelector(selector))
         .filter(Boolean);
 }
 
+// Função que mostra o popup
 function togglePopup(show, elem, arrayNumber) {
     const popup = popupArray[arrayNumber];
 
@@ -67,6 +74,7 @@ function togglePopup(show, elem, arrayNumber) {
     });
 }
 
+// Adiciona os EventListner nos elementos
 profile?.addEventListener('click', () => togglePopup(true, '', 0));
 closebtnArray[0]?.addEventListener('click', () => togglePopup(false, '', 0));
 popupcloseArray[0]?.addEventListener('click', () => togglePopup(false, '', 0));

@@ -1,8 +1,10 @@
+// Obtêm os elementos da pagina
 const categoryBox = document.querySelectorAll(".category-box");
 const products = document.querySelectorAll(".product");
 
 let activeCategory;
 
+// Para cada elementos, esconde aqueles que contenha uma categoria não selecionada
 categoryBox.forEach(elem => {
     elem.addEventListener('click', () => {
         const category = elem.querySelector('h2').textContent.toLowerCase();
@@ -29,6 +31,7 @@ categoryBox.forEach(elem => {
     });
 });
 
+// Ao clicar num produto o formulario associado ao produto é enviado
 products.forEach(product => {
     product.addEventListener('click', () => {
         const form = product.closest(".product-form");
@@ -38,6 +41,7 @@ products.forEach(product => {
     });
 });
 
+// Ao carregar a pagina, mostra apenas os produtos com desconto, caso um input possua um valor diferente de ""
 document.addEventListener("DOMContentLoaded", () => {
     const discountInput = document.getElementById("discount-input");
 
@@ -55,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Ao carregar a pagina, obtêm os dados de um input e demonstra apenas os produtos correspondetes ao valor desse input
 document.addEventListener("DOMContentLoaded", () => {
     const search = document.getElementById("search-input");
     if (!search) return;
@@ -75,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Ao clicar no butão de adicionar ao carrinho, é submetido um formulario que guarda os produtos no carrinho
 document.querySelectorAll('.product-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.stopPropagation();

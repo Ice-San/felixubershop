@@ -1,18 +1,28 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Obtêm as funções e variaveis do ficheiro
     include_once '../basedados/basedados.h';
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Verifica se um utilizador esta autenticado
     if(!isset($_SESSION['email'])) {
         header("Location: ./signin.php");
         exit();
     }
 
+    // Obtêm as inicias do nome do utilizador
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
 
+    // Guarda os dados de outra pagina
     $infoUser = $_POST['user-from-list'] ?? '';
+
+    // Verifica se a varivavel não esta vazia
+    // Caso esteja, obtêm-se os dados do utilizador e o seu historico de encomendas
+    // Caso NÃO esteja, obtêm os dados do utilizador recebido e o seu historico de encomendas
     if (!empty($infoUser)) {
         $user = run_select($conn, 'CALL get_user(?)', 's', [$infoUser]);
         $ordersHistory = run_select($conn, 'CALL get_done_orders(?)', 's', [$infoUser]);
@@ -21,8 +31,10 @@
         $ordersHistory = run_select($conn, 'CALL get_done_orders(?)', 's', [$_SESSION['email']]);
     }
 
+    // Obtêm-se os dados do utilizador autenticado
     $popupUser = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
 
+    // Obtêm-se a URL da pagina
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>

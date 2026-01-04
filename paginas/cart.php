@@ -1,25 +1,32 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Busca as functions e as varivaveis do ficheiro
     include_once '../basedados/basedados.h';
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Verifica se o utilizador esta autenticado
     if(!isset($_SESSION['email'])) {
         header("Location: ./signin.php");
         exit();
     }
 
+    // Obtêm os dados das orders e do user
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $order = run_select($conn, 'CALL get_pending_orders(?)', 's', [$_SESSION['email']]);
 
+    // Obtêm os dados dos produtos caso a order seja igual a 1
     if (count($order) === 1) {
         $products = run_select($conn, 'CALL get_products_order(?, ?, ?, ?)', 'ssss', [$_SESSION['email'], $order[0]['order_name'], 'pending', $order[0]['arrival_time']]);
     } else {
         $products = [];
     }
     
+    // Obtêm o URL da pagina atual
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
@@ -112,6 +119,8 @@
                                     <form method="POST" action="./remove-quantity.php">
                                         <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
                                         <input type="hidden" name="order-name" value="<?php echo $order[0]['order_name']; ?>" />
+                                        <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>" />
+                                        <input type="hidden" name="order-status" value="pending" />
 
                                         <button class="delete-button">
                                             <div class="delete-button-img-size">
@@ -123,6 +132,8 @@
                                     <form method="POST" action="./remove-product.php">
                                         <input type="hidden" name="product-name" value="<?php echo $product['product_name']; ?>" />
                                         <input type="hidden" name="order-name" value="<?php echo $order[0]['order_name']; ?>" />
+                                        <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>" />
+                                        <input type="hidden" name="order-status" value="pending" />
 
                                         <button class="delete-button">
                                             <div class="delete-button-img-size">

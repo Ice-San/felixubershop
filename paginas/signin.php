@@ -1,6 +1,8 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Verifica se o utilizador esta autenticado
     if(isset($_SESSION['email'])) {
         header('Location: ./shop.php');
         exit;

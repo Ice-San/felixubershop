@@ -1,9 +1,12 @@
+// Obtêm o form
 const form = document.getElementById("form");
 
+// Obtêm os elementos para demonstrar erro
 const errorUsername = document.getElementById("error-username");
 const errorEmail = document.getElementById("error-email");
 const errorPassword = document.getElementById("error-password");
 
+// Ao enviar o form ele valida os dados e demonstra uma mensagem de erro na pagina caso exista erro
 form.addEventListener("submit", e => {
     let hasError = false;
     

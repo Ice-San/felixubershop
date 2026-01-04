@@ -1,26 +1,34 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Obtêm as funções e variaveis do ficheiro
     include_once '../basedados/basedados.h';
 
+    // Verifica se um utilizado esta autenticado
     if(!isset($_SESSION['email'])) {
         header("Location: ./signin.php");
         exit();
     }
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Obtêm todos os dados de um utilizador
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
 
+    // Obt~em as orders de um cliente
     if($user[0]['user_type'] === "client") {
         $orders = run_select($conn, 'CALL get_user_orders(?)', 's', [$_SESSION['email']]);
     }
 
+    // Obtêm todas as orders caso o utilizador seja um admin ou funcionario
     if($user[0]['user_type'] === "admin" || $user[0]['user_type'] === "employee") {
         $orders = run_select($conn, 'CALL get_orders()');
     }
 
+    // Obtêm a URL da pagina
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>

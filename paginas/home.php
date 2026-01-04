@@ -1,15 +1,20 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Obtêm as functions e as variaveis do ficheiro
     include_once '../basedados/basedados.h';
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Obtêm os dados de um utilizador, caso ele esteja autenticado
     if(isset($_SESSION['email'])) {
         $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
         $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     }
 
+    // Obtêm o URL da pagina
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>

@@ -1,23 +1,30 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Obtêm as funções e as variaveis da base de dados
     include_once '../basedados/basedados.h';
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Verifica se um utilizador esta autenticado
     if(!isset($_SESSION['email'])) {
         header("Location: signin.php");
         exit();
     }
 
+    // Obtêm os dados do utilizador
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
 
+    // Verifica se o utilizador é diferente de admin
     if($user[0]['user_type'] !== "admin") {
         header("Location: shop.php");
         exit();
     }
 
+    // Obtêm os produtos e as suas categorias
     $products = run_select($conn, 'SELECT product_name, price, stock FROM get_all_products WHERE product_status = "active"');
     $categories = run_select($conn, 'CALL get_categories()');
 ?>

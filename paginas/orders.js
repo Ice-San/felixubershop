@@ -1,5 +1,7 @@
+// Guarda as orders
 const orders = document.querySelectorAll(".order-info");
 
+// Quando clicado numa order em especifico o formulario é submetido
 orders.forEach(order => {
     order.addEventListener("click", () => {
         const wrapper = order.closest(".order-content");
@@ -9,9 +11,11 @@ orders.forEach(order => {
     })
 });
 
+// Guarda o input e o local de procura
 const search = document.getElementById("search-input");
 const searchValues = document.querySelectorAll(".order");
 
+// Procura e mostra apenas o resultado da pesquisa
 search.addEventListener("input", e => {
     const searchTerm = e.target.value.toLowerCase().trim();
     

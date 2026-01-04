@@ -1,20 +1,27 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Busca as funções e variaveis do ficheiros
     include_once '../basedados/basedados.h';
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Se o utilizador estiver autenticado é buscado as suas informações
     if(isset($_SESSION['email'])) {
         $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
         $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     }
 
+    // Obtêm dados de outra pagina
     $discount = $_GET['discount'] ?? false;
     $search = $_POST['search'] ?? '';
 
+    // Obtêm todos os produtos
     $products = run_select($conn, 'SELECT * FROM get_all_products WHERE stock > 0');
 
+    // Obtêm a URL da pagina
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>

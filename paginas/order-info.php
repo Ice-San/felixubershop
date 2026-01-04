@@ -1,33 +1,42 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Obtêm as functions e as variaveis do ficheiro
     include_once '../basedados/basedados.h';
 
+    // Verifica se o utilizador esta autenticado
     if(!isset($_SESSION['email'])) {
         header("Location: ./signin.php");
         exit();
     }
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Obtêm os dados de um utilizador
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
 
+    // Guarda dados vindos de outra pagina Front-End
     $ownerEmail = $_POST["owner-email"];
     $orderName = $_POST["order-name"];
     $orderStatus = $_POST["order-status"];
     $arrivalTime = $_POST["arrival-time"];
     $orderPrice = $_POST["order-price"];
 
+    // Verifica se os dados são diferentes de null ou undefined
     if(!isset($ownerEmail) || !isset($orderName) || !isset($orderStatus) || !isset($arrivalTime) || !isset($orderPrice)) {
         header("Location: ./orders.php");
         exit();
     }
 
+    // Obtêm todos os produtos caso o utilizador seja um admin ou funcionario
     if($user[0]['user_type'] === "admin" || $user[0]['user_type'] === "employee") {
         $products = run_select($conn, 'CALL get_products_order(?, ?, ?, ?)', 'ssss', [$ownerEmail, $orderName, $orderStatus, $arrivalTime]);
     }
 
+    // Obtêm todos os produtos do cliente
     if($user[0]['user_type'] === "client") {
         if($ownerEmail !== $_SESSION['email']) {
             header("Location: ./orders.php");
@@ -37,11 +46,13 @@
         $products = run_select($conn, 'CALL get_products_order(?, ?, ?, ?)', 'ssss', [$_SESSION['email'], $orderName, $orderStatus, $arrivalTime]);
     }
 
+    // Caso o utilizador não seja admin, funcionario ou cliente ele é redirecionado para a pagina shop
     if($user[0]['user_type'] !== "admin" && $user[0]['user_type'] !== "employee" && $user[0]['user_type'] !== "client") {
         header("Location: ./shop.php");
         exit();
     }
 
+    // Obtêm a URL da pagina
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
     $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>

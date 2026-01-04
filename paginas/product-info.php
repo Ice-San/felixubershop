@@ -1,22 +1,29 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Guarda os dados vindos de outra pagina
     $productName = $_POST['product-name'];
     $productPrice = $_POST['product-price'];
 
+    // Obtêm as funções e variaveis do ficheiro
     include_once '../basedados/basedados.h';
 
+    // Verifica se os dados são diferentes de null ou undefined
     if(!isset($productName) || !isset($productPrice)) {
         header("Location: ./shop.php");
         exit;
     }
 
+    // Conecta a base de dados
     $conn = $conn = connect_db();
 
+    // Se o utilizador estiver autenticado, obtêm as inicias do nome dele
     if(isset($_SESSION['email'])) {
         $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     }
-    
+
+    // Obtêm o stock de um produto
     $stock = run_select($conn, 'CALL get_stock(?)', 's', [$productName]);
 ?>
 

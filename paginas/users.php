@@ -1,23 +1,33 @@
 <?php
+    // Inicia as SESSIONS
     session_start();
 
+    // Obtêm as funções e variaveis do ficheiro
     include_once '../basedados/basedados.h';
     
+    // Conecta a base de dados
     $conn = connect_db();
 
+    // Verifica se o utilizador esta autenticado
     if(!isset($_SESSION['email'])) {
         header("Location: signin.php");
         exit();
     }
 
+    // Obtêm os dados do utilizador e dos utilizadores
     $userInitials = get_user_initials($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $user = run_select($conn, 'CALL get_user(?)', 's', [$_SESSION['email']]);
     $users = run_select($conn, 'SELECT username, email, user_type, user_status, joined_at FROM get_all_users WHERE user_status = "active";');
 
+    // Verifica se o utilizador é um admin ou employee, caso contrário redireciona para a pagina shop
     if($user[0]['user_type'] !== "admin" && $user[0]['user_type'] !== "employee") {
         header("Location: shop.php");
         exit();
     }
+
+    // Obtêm o URL da pagina atual
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $current_url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
